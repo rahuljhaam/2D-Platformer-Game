@@ -224,6 +224,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7890683722630447589}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &952899034 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7036339725168249047, guid: b8e6cafd09476a544b32cf2bd1a36384,
+    type: 3}
+  m_PrefabInstance: {fileID: 7890683722630447589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &952899035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952899033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bc97371d93d7142941c8b1d2edb365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 952899034}
 --- !u!50 &952899037
 Rigidbody2D:
   serializedVersion: 4
