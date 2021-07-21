@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class player_controller : MonoBehaviour
 {
-    public Animator animator;
-    public float speed;
-    public float jump;
 
-    private Rigidbody2D rb2d;
 
-    private void Awake()
-    {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-    }
-    // Update is called once per frame
-    void Update()
+
+	public Animator animator;
+	public float speed;
+	public float jump;
+	private Rigidbody2D rb2d;
+
+
+
+	private void Awake()
+	{
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
+	}
+
+
+	void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Jump");
@@ -23,80 +28,69 @@ public class player_controller : MonoBehaviour
         MoverCharacter(horizontal, vertical);
         PlayMovementAnimation(horizontal, vertical);
 
+        Crouch();
 
+    }
+
+    private void Crouch()
+    {
         if (Input.GetKey(KeyCode.LeftControl))
         {
 
-
-            //Send the message to the Animator to activate the trigger parameter named "Crouch"
             animator.SetTrigger("Crouch");
         }
         else
         {
             animator.ResetTrigger("Crouch");
         }
-
-
-
-
-
-
-
-
     }
-    //Player actual Movement
+
+
+
+
     private void MoverCharacter(float horizontal, float vertical)
-    {   //move character horizontal
-        Vector3 position = transform.position;
-        position.x += horizontal * speed * Time.deltaTime;
-        transform.position = position;
+	{           
 
-        //move character vertical
-        if (vertical > 0)
-        {
-            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
-        }
+		Vector3 position = transform.position;
+		position.x += horizontal * speed * Time.deltaTime;
+		transform.position = position;
 
-    }
+		if (vertical > 0)
+		{
+			rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+		}
 
-
-
-
-    private void PlayMovementAnimation(float horizontal, float vertical)
-    {
-        animator.SetFloat("speed", Mathf.Abs(horizontal));
-        Vector3 scale = transform.localScale;
+	}
 
 
 
-        if (horizontal < 0)
-        {
-            scale.x = -1f * Mathf.Abs(scale.x);
+	private void PlayMovementAnimation(float horizontal, float vertical)
+	{
+		animator.SetFloat("speed", Mathf.Abs(horizontal));
+		Vector3 scale = transform.localScale;
+		transform.localScale = scale;
 
 
-        }
+		if (horizontal < 0)
+		{
+			scale.x = -1f * Mathf.Abs(scale.x);
+		}
 
-        else if (horizontal > 0)
-        {
-            scale.x = Mathf.Abs(scale.x);
-        }
-
-        transform.localScale = scale;
-
-
-        //float vertical = Input.GetAxisRaw("Jump");
-
-        if (vertical > 0)
-        {
-            animator.SetBool("Jump", true);
-            //  Input.GetKeyDown(KeyCode.Space);
+		else if (horizontal > 0)
+		{
+			scale.x = Mathf.Abs(scale.x);
+		}
 
 
-        }
+		if (vertical > 0)
+		{
+			animator.SetBool("Jump", true);
 
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
-    }
+		}
+
+		else
+		{
+			animator.SetBool("Jump", false);
+		}
+	}
 }
