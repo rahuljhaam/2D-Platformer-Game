@@ -902,7 +902,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314100409}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1314100411
 Camera:
   m_ObjectHideFlags: 0
@@ -1148,7 +1148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 952899035, guid: b8e6cafd09476a544b32cf2bd1a36384, type: 3}
       propertyPath: speed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 952899037, guid: b8e6cafd09476a544b32cf2bd1a36384, type: 3}
       propertyPath: m_UseAutoMass

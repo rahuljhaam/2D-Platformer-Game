@@ -13,7 +13,7 @@ public class Playerdeath : MonoBehaviour
         if (collision.gameObject.GetComponent<player_controller>() != null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("Level Finished by the player");
+            Debug.Log("player dead scene reloaded");
 
         }
     }

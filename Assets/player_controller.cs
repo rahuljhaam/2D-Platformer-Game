@@ -15,8 +15,7 @@ public class player_controller : MonoBehaviour
 
 
 	private void Awake()
-	{
-		rb2d = gameObject.GetComponent<Rigidbody2D>();
+	{	rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
 
@@ -35,30 +34,21 @@ public class player_controller : MonoBehaviour
     private void Crouch()
     {
         if (Input.GetKey(KeyCode.LeftControl))
-        {
-
-            animator.SetTrigger("Crouch");
-        }
+        {            animator.SetTrigger("Crouch");     }
         else
-        {
-            animator.ResetTrigger("Crouch");
-        }
+        {      animator.ResetTrigger("Crouch");         }
     }
 
 
 
 
     private void MoverCharacter(float horizontal, float vertical)
-	{           
-
-		Vector3 position = transform.position;
+	{   Vector3 position = transform.position;
 		position.x += horizontal * speed * Time.deltaTime;
 		transform.position = position;
 
 		if (vertical > 0)
-		{
-			rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
-		}
+		{	rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);	}
 
 	}
 
@@ -70,27 +60,20 @@ public class player_controller : MonoBehaviour
 		Vector3 scale = transform.localScale;
 		transform.localScale = scale;
 
-
 		if (horizontal < 0)
-		{
-			scale.x = -1f * Mathf.Abs(scale.x);
+		{	scale.x = -1f * Mathf.Abs(scale.x);
 		}
 
 		else if (horizontal > 0)
-		{
-			scale.x = Mathf.Abs(scale.x);
+		{	scale.x = Mathf.Abs(scale.x);
 		}
 
-
 		if (vertical > 0)
-		{
-			animator.SetBool("Jump", true);
-
+		{	animator.SetBool("Jump", true);
 		}
 
 		else
-		{
-			animator.SetBool("Jump", false);
+		{	animator.SetBool("Jump", false);
 		}
 	}
 }
