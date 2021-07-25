@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class player_controller : MonoBehaviour
 {
-
-
+	public ScoreController scoreController;
 
 	public Animator animator;
 	public float speed;
@@ -31,7 +31,13 @@ public class player_controller : MonoBehaviour
 
     }
 
-    private void Crouch()
+	public void PickUpKey()
+	{
+		Debug.Log(" Player picked up the key");
+		scoreController.IncreaseScore(10);
+	}
+
+	private void Crouch()
     {
         if (Input.GetKey(KeyCode.LeftControl))
         {            animator.SetTrigger("Crouch");     }
