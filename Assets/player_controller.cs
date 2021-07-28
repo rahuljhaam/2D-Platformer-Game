@@ -18,8 +18,12 @@ public class player_controller : MonoBehaviour
 	{	rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
+    internal void KillPlayer()
+    {
+		Debug.Log(" Player hit the enemy");
+	}
 
-	void Update()
+    void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Jump");
