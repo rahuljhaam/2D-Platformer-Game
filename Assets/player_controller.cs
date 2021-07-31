@@ -6,12 +6,15 @@ using UnityEngine;
 public class player_controller : MonoBehaviour
 {
 	public ScoreController scoreController;
-
 	public Animator animator;
 	public float speed;
+	private float horizontal;
+	private float vertical;
 	public float jump;
+	private bool crouching;
 	private Rigidbody2D rb2d;
-
+	[SerializeField] private Playerdeath playerdeath;
+	public float health;
 
 
 	private void Awake()
@@ -20,6 +23,7 @@ public class player_controller : MonoBehaviour
 
     internal void KillPlayer()
     {
+		//Health.heath -= 1;
 		Debug.Log(" Player hit the enemy");
 	}
 
@@ -57,8 +61,8 @@ public class player_controller : MonoBehaviour
 		position.x += horizontal * speed * Time.deltaTime;
 		transform.position = position;
 
-		if (vertical > 0)
-		{	rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);	}
+		rb2d.AddForce(new Vector2(0f, (vertical * jump)), ForceMode2D.Force);
+
 
 	}
 
@@ -77,13 +81,7 @@ public class player_controller : MonoBehaviour
 		else if (horizontal > 0)
 		{	scale.x = Mathf.Abs(scale.x);
 		}
-
-		if (vertical > 0)
-		{	animator.SetBool("Jump", true);
-		}
-
-		else
-		{	animator.SetBool("Jump", false);
-		}
+		transform.localScale = scale;
+		
 	}
 }

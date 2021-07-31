@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float speed;
+    private bool moveright = true;
+    public Transform groundDetect;
+
+    private void Update()
     {
-        if (collision.gameObject.GetComponent<player_controller>() != null)
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 2f);
+        Debug.DrawRay(groundDetect.position, Vector2.down, Color.red);
+        if (groundInfo.collider == false)
         {
-            player_controller player_Controller = collision.gameObject.GetComponent<player_controller>();
-            player_Controller.KillPlayer();
+            if (moveright)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                moveright = false;
+            }
+            else if (!moveright)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                moveright = true;
+            }
         }
     }
 }
