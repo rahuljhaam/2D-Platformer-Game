@@ -6,6 +6,7 @@ using UnityEngine;
 public class player_controller : MonoBehaviour
 {
 	public ScoreController scoreController;
+	public GameOVerController gameOverController;
 	public Animator animator;
 	public float speed;
 	private float horizontal;
@@ -24,8 +25,12 @@ public class player_controller : MonoBehaviour
     internal void KillPlayer()
     {
 		//Health.heath -= 1;
+		gameOverController.PlayerDied();
 		Debug.Log(" Player hit the enemy");
+		this.enabled = false;
 	}
+
+	
 
     void Update()
     {
