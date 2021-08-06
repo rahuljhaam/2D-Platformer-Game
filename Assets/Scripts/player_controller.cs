@@ -18,7 +18,7 @@ public class player_controller : MonoBehaviour
 	private bool crouching;
 	private Rigidbody2D rb2d;
 	[SerializeField] private Playerdeath playerdeath;
-	private float jumpForce = 8f;
+	private float jumpForce = 11f;
 	public float health;
 
 

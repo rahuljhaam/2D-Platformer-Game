@@ -1,28 +1,61 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int Max_Health = 3;
-    public int Current_Health;
-    //public Animator anim;
+    public int health;
+    public int noOfHearts;
+    public Image[] hearts;
+    public Image[] emptyHearts;
+    public Sprite FullHeart;
+    public Sprite EmptyHeart;
+    public player_controller KillPlayer;
+    public player_controller AnimatorHurt;
 
-    void Start()
+    void Update()
     {
-        Current_Health = Max_Health;
+
+        if (health > noOfHearts)
+        {
+            health = noOfHearts;
+        }
+
+
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].sprite = FullHeart;
+            }
+            else
+                hearts[i].sprite = EmptyHeart;
+
+            if (i < noOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+                hearts[i].enabled = false;
+        }
     }
-
-    // Update is called once per frame
-    void Take_Damage(int amount)
+    public void healthReduce()
     {
-        Current_Health -= amount;
-      //  if(Current_Health <= 0)
-      //  {
-      //      //We're dead
-      //      //Play Death animation
-      //      //Show GameOver Screen
-      //      anim.Setbool("IsDead", true);
-      //  }
+        if (health == 0)
+        {
+            KillPlayer.KillPlayer();
+        }
+
+        else
+        {
+            health = health - 1;
+            Debug.Log("Health reduced");
+         //   AnimatorHurt.PlayHurtAnimation();
+        }
+
+
     }
 }
