@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class LevelOverController : MonoBehaviour
-{
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public class LevelOverController : MonoBehaviour
     {
-        if (collision.gameObject.GetComponent<player_controller>() != null)
+    public LevelCompleteScripts LevelComplete;
+    private void OnTriggerEnter2D(Collider2D collision)
         {
-            SceneManager.LoadScene(1);
-            Debug.Log("Level Finished by the player");
+        if (collision.gameObject.GetComponent<player_controller>())
+        {
+            Debug.Log("Level Finished");
+           // LevelCompleteScripts.PlayerWon();
+            LevelManager.Instance.MarkCurrentLevelComplete();
+            LevelManager.Instance.SetLevelStatus(SceneManager.GetActiveScene().name, LevelStatus.Completed);
         }
     }
-}
+    }
+    
+   

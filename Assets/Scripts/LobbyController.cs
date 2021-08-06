@@ -5,22 +5,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-
 public class LobbyController : MonoBehaviour
 {
     public Button buttonPlay;
+    public Button buttonExit;
     public GameObject LevelSelection;
-
     private void Awake()
     {
         buttonPlay.onClick.AddListener(PlayGame);
+        buttonPlay.onClick.AddListener(QuitGame);
     }
-    
-    public void PlayGame()
+
+    public void QuitGame()
     {
-       // SceneManager.LoadScene(1);
-        LevelSelection.SetActive(true);
-       
+        Application.Quit();
     }
- }
+
+    private void PlayGame()
+    {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
+        LevelSelection.SetActive(true);
+    }
+}

@@ -19,30 +19,31 @@ public class player_controller : MonoBehaviour
 
 
 	private void Awake()
-	{	rb2d = gameObject.GetComponent<Rigidbody2D>();
+	{
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
-    internal void KillPlayer()
-    {
+	internal void KillPlayer()
+	{
 		//Health.heath -= 1;
 		gameOverController.PlayerDied();
 		Debug.Log(" Player hit the enemy");
 		this.enabled = false;
 	}
 
-	
 
-    void Update()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Jump");
 
-        MoverCharacter(horizontal, vertical);
-        PlayMovementAnimation(horizontal, vertical);
+	void Update()
+	{
+		float horizontal = Input.GetAxisRaw("Horizontal");
+		float vertical = Input.GetAxisRaw("Jump");
 
-        Crouch();
+		MoverCharacter(horizontal, vertical);
+		PlayMovementAnimation(horizontal, vertical);
 
-    }
+		Crouch();
+
+	}
 
 	public void PickUpKey()
 	{
@@ -51,18 +52,19 @@ public class player_controller : MonoBehaviour
 	}
 
 	private void Crouch()
-    {
-        if (Input.GetKey(KeyCode.LeftControl))
-        {            animator.SetTrigger("Crouch");     }
-        else
-        {      animator.ResetTrigger("Crouch");         }
-    }
+	{
+		if (Input.GetKey(KeyCode.LeftControl))
+		{ animator.SetTrigger("Crouch"); }
+		else
+		{ animator.ResetTrigger("Crouch"); }
+	}
 
 
 
 
-    private void MoverCharacter(float horizontal, float vertical)
-	{   Vector3 position = transform.position;
+	private void MoverCharacter(float horizontal, float vertical)
+	{
+		Vector3 position = transform.position;
 		position.x += horizontal * speed * Time.deltaTime;
 		transform.position = position;
 
@@ -80,13 +82,15 @@ public class player_controller : MonoBehaviour
 		transform.localScale = scale;
 
 		if (horizontal < 0)
-		{	scale.x = -1f * Mathf.Abs(scale.x);
+		{
+			scale.x = -1f * Mathf.Abs(scale.x);
 		}
 
 		else if (horizontal > 0)
-		{	scale.x = Mathf.Abs(scale.x);
+		{
+			scale.x = Mathf.Abs(scale.x);
 		}
 		transform.localScale = scale;
-		
+
 	}
 }
