@@ -11,10 +11,14 @@ public class player_controller : MonoBehaviour
 	public float speed;
 	private float horizontal;
 	private float vertical;
-	public float jump;
+	public float  jump;
+	private bool isGrounded;
+	private string GROUND_TAG = "Ground";
+
 	private bool crouching;
 	private Rigidbody2D rb2d;
 	[SerializeField] private Playerdeath playerdeath;
+	private float jumpForce = 8f;
 	public float health;
 
 
@@ -36,13 +40,17 @@ public class player_controller : MonoBehaviour
 	void Update()
 	{
 		float horizontal = Input.GetAxisRaw("Horizontal");
-		float vertical = Input.GetAxisRaw("Jump");
+	//	float vertical = Input.GetAxisRaw("Jump");
 
 		MoverCharacter(horizontal, vertical);
 		PlayMovementAnimation(horizontal, vertical);
 
 		Crouch();
+	}
 
+	private void FixedUpdate()
+    {
+		PlayerJump();
 	}
 
 	public void PickUpKey()
@@ -91,6 +99,26 @@ public class player_controller : MonoBehaviour
 			scale.x = Mathf.Abs(scale.x);
 		}
 		transform.localScale = scale;
+
+	}
+
+	void PlayerJump()
+    {
+		if(Input.GetButtonDown("Jump") && isGrounded)
+		{
+			isGrounded = false;
+			rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+			Debug.Log("Jump pressed"); }
+    }
+
+	private void OnCollisionEnter2D(Collision2D collision)
+    {
+		if(collision.gameObject.CompareTag("Ground"))
+        {
+			isGrounded = true;
+
+		}
 
 	}
 }

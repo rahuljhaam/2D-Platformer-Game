@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
         if (collision.gameObject.GetComponent<player_controller>())
         {
             Debug.Log("Level Finished");
-           // LevelCompleteScripts.PlayerWon();
+            // LevelCompleteScripts.PlayerWon();
             LevelManager.Instance.MarkCurrentLevelComplete();
             LevelManager.Instance.SetLevelStatus(SceneManager.GetActiveScene().name, LevelStatus.Completed);
         }
