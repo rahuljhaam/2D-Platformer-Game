@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - groundDetection
+  - h1
+  - h2
+  - h3
+  - Ground
   layers:
   - Default
   - TransparentFX
